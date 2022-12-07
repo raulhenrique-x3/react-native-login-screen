@@ -1,7 +1,15 @@
 import { Avatar } from "react-native-elements";
-import { StyleSheet, Text, View, SafeAreaView, TextInput } from "react-native";
+import { StyleSheet, View, SafeAreaView } from "react-native";
 import { Button } from "@rneui/themed";
-export const LoginBox = () => {
+import { TextInputs } from "./TextInputs";
+
+interface IProps {
+  navigation: any;
+}
+
+export const LoginBox = (props: IProps) => {
+  const register = () => props.navigation.navigate("Cadastro");
+
   return (
     <View>
       <View style={styles.avatarView}>
@@ -12,16 +20,11 @@ export const LoginBox = () => {
         />
       </View>
 
-      <SafeAreaView>
-        <Text style={styles.formText}>Login</Text>
-        <TextInput style={styles.input} />
-        <Text style={styles.formText}>Senha</Text>
-        <TextInput style={styles.input} />
-      </SafeAreaView>
+      <TextInputs textInput1="Login" textInput2="Senha" />
 
       <SafeAreaView>
         <Button style={styles.userButton}>Login</Button>
-        <Button style={styles.userButton} color="error">
+        <Button onPress={register} style={styles.userButton} color="error">
           Cadastre-se
         </Button>
       </SafeAreaView>
@@ -33,21 +36,6 @@ const styles = StyleSheet.create({
   avatarView: {
     display: "flex",
     alignItems: "center",
-  },
-
-  formText: {
-    fontSize: 18,
-    marginBottom: 4,
-  },
-
-  input: {
-    borderLeftWidth: 1,
-    borderRightWidth: 1,
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    padding: 12,
-    backgroundColor: "#fff",
-    borderColor: "#cdcdcd",
   },
 
   userButton: {
