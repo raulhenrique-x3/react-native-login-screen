@@ -7,40 +7,53 @@ import { IProps } from "../interface/interface";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Button } from "@rneui/themed";
 
-export const ContactInfo = ({ id }: IProps) => {
-  const [data, setData] = useState<IProps[]>([]);
-  const [loading, setLoading] = useState(true);
+export const ContactInfo = ({ route }: IProps) => {
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [telefone, setTelefone] = useState("");
+  const [id, setId] = useState();
 
   useEffect(() => {
-    async function fetchData() {
-      await axios
-        .get(`${API_URL}/ ${id}`)
-        .then((res) => {
-          setData(res.data);
-        })
-        .catch((error) => console.error(error))
-        .finally(() => setLoading(false));
+    if (route.params) {
+      const { nome } = route.params;
+      const { email } = route.params;
+      const { telefone } = route.params;
+      const { id } = route.params;
+
+      setNome(nome);
+      setEmail(email);
+      setTelefone(telefone);
+      setId(id);
     }
-    fetchData();
   }, []);
+
+  function putData() {
+    axios
+      .put(API_URL + id, {
+        nome: nome,
+        email: email,
+        telefone: telefone,
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => console.error(error.response.data));
+  }
+
   return (
     <View style={styles.container}>
-      {loading ? (
-        <Text>Carregando...</Text>
-      ) : (
-        <SafeAreaView>
-          <TextInputs textInput1="Nome" value={data?.[0]?.nome} />
-          <TextInputs textInput1="Email" value={data?.[0]?.email} />
-          <TextInputs textInput1="Telefone" value={data?.[0]?.telefone} />
+      <SafeAreaView>
+        <TextInputs textInput1="Nome" value={nome} onChangeText={(text) => setNome(text)} />
+        <TextInputs textInput1="Email" value={email} onChangeText={(text) => setEmail(text)} />
+        <TextInputs textInput1="Telefone" value={telefone} onChangeText={(text) => setTelefone(text)} />
 
-          <TouchableOpacity style={styles.userButton}>
-            <Button>Alterar</Button>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.userButton}>
-            <Button color="error">Excluir</Button>
-          </TouchableOpacity>
-        </SafeAreaView>
-      )}
+        <TouchableOpacity style={styles.userButton}>
+          <Button onPress={putData}>Alterar</Button>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.userButton}>
+          <Button color="error">Excluir</Button>
+        </TouchableOpacity>
+      </SafeAreaView>
     </View>
   );
 };

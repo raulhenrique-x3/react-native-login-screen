@@ -8,4 +8,5 @@ export interface IProps {
   onChangeText?: (val: string) => void;
   textInput1?: string;
   value?: React.ReactNode | any;
+  route?: any;
 }

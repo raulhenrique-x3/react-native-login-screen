@@ -9,9 +9,6 @@ import { IProps } from "../interface/interface";
 export const ContactList = (props: IProps) => {
   const [data, setData] = useState<IProps[]>([]);
   const [loading, setLoading] = useState(true);
-  const contactInfo = () => {
-    props.navigation.navigate("Informações");
-  };
 
   const addContact = () => {
     props.navigation.navigate("Adicionar");
@@ -47,7 +44,18 @@ export const ContactList = (props: IProps) => {
       ) : (
         <ScrollView>
           {data.map((contact) => (
-            <ListItem key={contact?.id} bottomDivider onPress={contactInfo}>
+            <ListItem
+              key={contact?.id}
+              bottomDivider
+              onPress={() =>
+                props.navigation.navigate("Informações", {
+                  nome: contact?.nome,
+                  telefone: contact?.telefone,
+                  email: contact?.email,
+                  id: contact?.id,
+                })
+              }
+            >
               <Avatar
                 size={"large"}
                 rounded
