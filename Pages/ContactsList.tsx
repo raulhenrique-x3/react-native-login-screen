@@ -33,45 +33,43 @@ export const ContactList = (props: IProps) => {
 
   return (
     <View>
-      <SafeAreaProvider>
-        <Header
-          placement="center"
-          centerComponent={{ text: "Lista de Contatos", style: { color: "#fff", fontSize: 24, fontWeight: "500" } }}
-          rightComponent={
-            <Button
-              icon={<Icon name="plus" type="feather" size={24} color="white" tvParallaxProperties={undefined} />}
-              onPress={addContact}
-            />
-          }
-        />
-        {loading ? (
-          <Button title="Solid" type="solid" loading />
-        ) : (
-          <ScrollView>
-            {data.map((contact) => (
-              <ListItem key={contact?.id} bottomDivider onPress={contactInfo}>
-                <Avatar
-                  size={"large"}
-                  rounded
-                  icon={{ name: "user-circle-o", type: "font-awesome", color: "#000000", size: 80 }}
-                />
-                <ListItem.Content>
-                  {contact?.nome == "undefined" || contact?.nome == "" ? (
-                    <ListItem.Title>Usuário sem nome</ListItem.Title>
-                  ) : (
-                    <ListItem.Title>{contact?.nome}</ListItem.Title>
-                  )}
-                  {contact?.telefone == "undefined" || contact?.telefone == "" ? (
-                    <ListItem.Title>Sem telefone</ListItem.Title>
-                  ) : (
-                    <ListItem.Title>{contact?.telefone}</ListItem.Title>
-                  )}
-                </ListItem.Content>
-              </ListItem>
-            ))}
-          </ScrollView>
-        )}
-      </SafeAreaProvider>
+      <Header
+        placement="center"
+        centerComponent={{ text: "Lista de Contatos", style: { color: "#fff", fontSize: 24, fontWeight: "500" } }}
+        rightComponent={
+          <Button
+            icon={<Icon name="plus" type="feather" size={24} color="white" tvParallaxProperties={undefined} />}
+            onPress={addContact}
+          />
+        }
+      />
+      {loading ? (
+        <Button title="Solid" type="solid" loading />
+      ) : (
+        <ScrollView>
+          {data.map((contact) => (
+            <ListItem key={contact?.id} bottomDivider onPress={contactInfo}>
+              <Avatar
+                size={"large"}
+                rounded
+                icon={{ name: "user-circle-o", type: "font-awesome", color: "#000000", size: 72 }}
+              />
+              <ListItem.Content>
+                {contact?.nome == "undefined" || contact?.nome == "" ? (
+                  <ListItem.Title>Usuário sem nome</ListItem.Title>
+                ) : (
+                  <ListItem.Title>{contact?.nome}</ListItem.Title>
+                )}
+                {contact?.telefone == "undefined" || contact?.telefone == "" ? (
+                  <ListItem.Title>Sem telefone</ListItem.Title>
+                ) : (
+                  <ListItem.Title>{contact?.telefone}</ListItem.Title>
+                )}
+              </ListItem.Content>
+            </ListItem>
+          ))}
+        </ScrollView>
+      )}
     </View>
   );
 };

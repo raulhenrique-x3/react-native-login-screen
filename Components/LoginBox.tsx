@@ -1,5 +1,5 @@
 import { Avatar } from "react-native-elements";
-import { StyleSheet, View, SafeAreaView } from "react-native";
+import { StyleSheet, View, SafeAreaView, TouchableOpacity } from "react-native";
 import { Button } from "@rneui/themed";
 import { TextInputs } from "./TextInputs";
 
@@ -17,7 +17,7 @@ export const LoginBox = (props: IProps) => {
         <Avatar
           size={"large"}
           rounded
-          icon={{ name: "user-circle-o", type: "font-awesome", color: "#000000", size: 80 }}
+          icon={{ name: "user-circle-o", type: "font-awesome", color: "#000000", size: 72 }}
         />
       </View>
 
@@ -25,12 +25,15 @@ export const LoginBox = (props: IProps) => {
       <TextInputs textInput1="Senha" value="" />
 
       <SafeAreaView>
-        <Button onPress={login} style={styles.userButton}>
-          Login
-        </Button>
-        <Button onPress={register} style={styles.userButton} color="error">
-          Cadastre-se
-        </Button>
+        <TouchableOpacity style={styles.userButton}>
+          <Button onPress={login}>Login</Button>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.userButton}>
+          <Button onPress={register} color="error">
+            Cadastre-se
+          </Button>
+        </TouchableOpacity>
       </SafeAreaView>
     </View>
   );
@@ -43,6 +46,6 @@ const styles = StyleSheet.create({
   },
 
   userButton: {
-    marginTop: 12,
+    marginBottom: 12,
   },
 });

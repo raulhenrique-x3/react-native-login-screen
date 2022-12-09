@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
   },
 
   input: {
+    width: 200,
     borderLeftWidth: 1,
     borderRightWidth: 1,
     borderTopWidth: 1,
@@ -24,5 +25,6 @@ const styles = StyleSheet.create({
     padding: 12,
     backgroundColor: "#fff",
     borderColor: "#cdcdcd",
+    marginBottom: 12,
   },
 });

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { TextInputs } from "../Components/TextInputs";
 import axios from "axios";
 import { API_URL } from "../const/API_URL";
@@ -33,10 +33,12 @@ export const ContactInfo = ({ id }: IProps) => {
           <TextInputs textInput1="Email" value={data?.[0]?.email} />
           <TextInputs textInput1="Telefone" value={data?.[0]?.telefone} />
 
-          <Button style={styles.userButton}>Alterar</Button>
-          <Button style={styles.userButton} color="error">
-            Excluir
-          </Button>
+          <TouchableOpacity style={styles.userButton}>
+            <Button>Alterar</Button>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.userButton}>
+            <Button color="error">Excluir</Button>
+          </TouchableOpacity>
         </SafeAreaView>
       )}
     </View>
