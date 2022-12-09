@@ -15,7 +15,7 @@ const AppNavigator = () => {
       <Stack.Screen name="Cadastro" component={RegisterBox} />
       <Stack.Screen name="Contatos" component={ContactList} options={{ headerShown: false }} />
       <Stack.Screen name="Informações" component={ContactInfo} />
-      <Stack.Screen name="AddContato" component={AddContact} />
+      <Stack.Screen name="Adicionar" component={AddContact} />
     </Stack.Navigator>
   );
 };

@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { Avatar, Icon } from "react-native-elements";
 import { Button, ListItem, Header } from "@rneui/themed";
 import { IProps } from "../interface/interface";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export const ContactList = (props: IProps) => {
   const [data, setData] = useState<IProps[]>([]);
@@ -15,7 +14,7 @@ export const ContactList = (props: IProps) => {
   };
 
   const addContact = () => {
-    props.navigation.navigate("AddContato");
+    props.navigation.navigate("Adicionar");
   };
 
   useEffect(() => {
