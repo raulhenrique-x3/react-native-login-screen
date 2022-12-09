@@ -8,6 +8,7 @@ interface IProps {
 }
 
 export const LoginBox = (props: IProps) => {
+  const login = () => props.navigation.navigate("Contatos");
   const register = () => props.navigation.navigate("Cadastro");
 
   return (
@@ -20,10 +21,13 @@ export const LoginBox = (props: IProps) => {
         />
       </View>
 
-      <TextInputs textInput1="Login" textInput2="Senha" />
+      <TextInputs textInput1="Login" value="" />
+      <TextInputs textInput1="Senha" value="" />
 
       <SafeAreaView>
-        <Button style={styles.userButton}>Login</Button>
+        <Button onPress={login} style={styles.userButton}>
+          Login
+        </Button>
         <Button onPress={register} style={styles.userButton} color="error">
           Cadastre-se
         </Button>

@@ -1,17 +1,11 @@
 import { StyleSheet, Text, SafeAreaView, TextInput } from "react-native";
+import { IProps } from "../interface/interface";
 
-interface IProps {
-  textInput1: string;
-  textInput2: string;
-}
-
-export const TextInputs = ({ textInput1, textInput2 }: IProps) => {
+export const TextInputs = ({ textInput1, value, onChangeText }: IProps) => {
   return (
     <SafeAreaView>
       <Text style={styles.formText}>{textInput1}</Text>
-      <TextInput style={styles.input} />
-      <Text style={styles.formText}>{textInput2}</Text>
-      <TextInput style={styles.input} />
+      <TextInput style={styles.input} value={value} onChangeText={onChangeText} />
     </SafeAreaView>
   );
 };

@@ -6,7 +6,8 @@ export const RegisterBox = () => {
   return (
     <View style={styles.RegisterBoxContainer}>
       <SafeAreaView>
-        <TextInputs textInput1="Email" textInput2="Senha" />
+        <TextInputs textInput1="Email" value="" />
+        <TextInputs textInput1="Senha" value="" />
         <Button style={styles.saveInfoButton}>Salvar</Button>
       </SafeAreaView>
     </View>
