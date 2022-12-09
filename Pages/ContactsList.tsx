@@ -1,5 +1,5 @@
 import axios from "axios";
-import { View, ScrollView } from "react-native";
+import { View, ScrollView, StyleSheet } from "react-native";
 import { API_URL } from "../const/API_URL";
 import { useEffect, useState } from "react";
 import { Avatar, Icon } from "react-native-elements";
@@ -32,7 +32,7 @@ export const ContactList = (props: IProps) => {
   }, []);
 
   return (
-    <View>
+    <View style={styles.container}>
       <Header
         placement="center"
         centerComponent={{ text: "Lista de Contatos", style: { color: "#fff", fontSize: 24, fontWeight: "500" } }}
@@ -73,3 +73,9 @@ export const ContactList = (props: IProps) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    height: "100%",
+  },
+});
