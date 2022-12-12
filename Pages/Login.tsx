@@ -1,7 +1,8 @@
 import { View, StyleSheet } from "react-native";
 import { LoginBox } from "../Components/LoginBox";
+import { IProps } from "../interface/interface";
 
-export const Login = (props: any) => {
+export const Login = (props: IProps) => {
   return (
     <View style={styles.container}>
       <LoginBox navigation={props.navigation} />

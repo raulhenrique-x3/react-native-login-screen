@@ -2,14 +2,28 @@ import { Avatar } from "react-native-elements";
 import { StyleSheet, View, SafeAreaView, TouchableOpacity } from "react-native";
 import { Button } from "@rneui/themed";
 import { TextInputs } from "./TextInputs";
-
-interface IProps {
-  navigation: any;
-}
+import { IProps } from "../interface/interface";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export const LoginBox = (props: IProps) => {
+  const [userLogin, setUserLogin] = useState("");
+  const [userPassword, setUserPassword] = useState("");
+
   const login = () => props.navigation.navigate("Contatos");
   const register = () => props.navigation.navigate("Cadastro");
+
+  async function LoginUser() {
+    await axios
+      .get(`http://192.168.56.1:5000/users/login/${userLogin}/${userPassword}`)
+      .then((res) => {
+        console.log(res);
+        if (res.data.length > 0) {
+          login();
+        } else return;
+      })
+      .catch((err) => console.log(err));
+  }
 
   return (
     <View>
@@ -21,12 +35,12 @@ export const LoginBox = (props: IProps) => {
         />
       </View>
 
-      <TextInputs textInput1="Login" value="" />
-      <TextInputs textInput1="Senha" value="" />
+      <TextInputs textInput1="Login" value={userLogin} onChangeText={(text) => setUserLogin(text)} />
+      <TextInputs textInput1="Senha" value={userPassword} onChangeText={(text) => setUserPassword(text)} />
 
       <SafeAreaView>
         <TouchableOpacity style={styles.userButton}>
-          <Button onPress={login}>Login</Button>
+          <Button onPress={LoginUser}>Login</Button>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.userButton}>

@@ -5,10 +5,12 @@ import { useEffect, useState } from "react";
 import { Avatar, Icon } from "react-native-elements";
 import { Button, ListItem, Header } from "@rneui/themed";
 import { IProps } from "../interface/interface";
+import { useIsFocused } from "@react-navigation/native";
 
 export const ContactList = (props: IProps) => {
   const [data, setData] = useState<IProps[]>([]);
   const [loading, setLoading] = useState(true);
+  const refresh = useIsFocused();
 
   const addContact = () => {
     props.navigation.navigate("Adicionar");
@@ -25,7 +27,7 @@ export const ContactList = (props: IProps) => {
         .finally(() => setLoading(false));
     }
     fetchData();
-  }, []);
+  }, [refresh]);
 
   return (
     <View style={styles.container}>

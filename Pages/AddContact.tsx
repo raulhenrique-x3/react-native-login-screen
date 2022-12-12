@@ -22,15 +22,15 @@ export const AddContact = () => {
       .catch((err) => console.error(err));
   }
 
-  const setName = (text: any) => {
+  const setName = (text: string) => {
     setAddName(text);
   };
 
-  const setTel = (text: any) => {
+  const setTel = (text: string) => {
     setAddTel(text);
   };
 
-  const setEmail = (text: any) => {
+  const setEmail = (text: string) => {
     setAddEmail(text);
   };
 
